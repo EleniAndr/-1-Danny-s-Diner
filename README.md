@@ -29,8 +29,17 @@
 </table>
 
 ## Case Study Questions & Answers
-
+ Press this [link](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138), where a fully functioning SQL editor is to easily access these example datasets.
 ### 1. What is the total amount each customer spent at the restaurant?
+
+```sql
+SELECT product_id,
+    product_name,
+    price
+FROM dannys_diner.menu
+ORDER BY price DESC
+LIMIT 5;
+```
 
 
 ### 2. How many days has each customer visited the restaurant?
