@@ -29,18 +29,30 @@
 </table>
 
 ## Case Study Questions & Answers
- Press this [link](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138), where a fully functioning SQL editor is to easily access these example datasets.
+ Press this [link](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138), where a fully functioning SQL editor is available to easily access these example datasets.
 ### 1. What is the total amount each customer spent at the restaurant?
 
+#### 💻 SQL Query
 ```sql
-SELECT product_id,
-    product_name,
-    price
-FROM dannys_diner.menu
-ORDER BY price DESC
-LIMIT 5;
+    SELECT customer_id, SUM(price) as total_price
+    FROM dannys_diner.sales as ds
+    JOIN dannys_diner.menu as dm 
+    	ON ds.product_id=dm.product_id
+    GROUP BY customer_id
+    ORDER BY customer_id;
 ```
+#### Result
 
+| customer_id | total_amount |
+| ----------- | ----------- |
+| A           | 76          |
+| B           | 74          |
+| C           | 36          |
+
+#### 📜 Explanation 
+- Join the `sales` and `menu` tables on customer_id.
+- Calculate the total amount spent by each customer with `SUM(price)`.
+- Group and order by `customer_id` to display each customer's total spending at the restaurant.
 
 ### 2. How many days has each customer visited the restaurant?
 ### 3. What was the first item from the menu purchased by each customer?
