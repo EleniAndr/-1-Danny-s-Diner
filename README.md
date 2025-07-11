@@ -34,14 +34,14 @@
 
 #### 💻 SQL Query
 ```sql
-    SELECT customer_id, SUM(price) as total_price
+    SELECT customer_id, SUM(price) as total_amount
     FROM dannys_diner.sales as ds
     JOIN dannys_diner.menu as dm 
     	ON ds.product_id=dm.product_id
     GROUP BY customer_id
     ORDER BY customer_id;
 ```
-#### Result
+#### 🖊 Result
 
 | customer_id | total_amount |
 | ----------- | ----------- |
@@ -50,20 +50,118 @@
 | C           | 36          |
 
 #### 📜 Explanation 
-- Join the `sales` and `menu` tables on customer_id.
-- Calculate the total amount spent by each customer with `SUM(price)`.
+- Inner join the `sales` and `menu` tables on customer_id.
+- Calculate the total amount spent by each customer with `SUM(price)` and rename the column to total_amount.
 - Group and order by `customer_id` to display each customer's total spending at the restaurant.
 
+### Answer
+
+The total amount each customer spent at the restaurant: 
+- Customer A spent 76$.
+- Customer B spent 74$.
+- Customer C spent 36$.
+---
+
 ### 2. How many days has each customer visited the restaurant?
+
+#### 💻 SQL Query
+```sql
+SELECT customer_id, COUNT(order_date) as days
+FROM dannys_diner.sales
+GROUP BY customer_id
+ORDER BY customer_id;
+```
+#### 🖊 Result
+| customer_id | days |
+| ----------- | ---- |
+| A           | 6    |
+| B           | 6    |
+| C           | 3    |
+#### 📜 Explanation
+- Count the days with `COUNT(order_date)`
+- Group and order by `customer_id`.
+### Answer
+Days that each customer has visited the restaurant:
+- Customer A has visited the restaurant 6 times.
+- Customer B has visited the restaurant 6 times.
+- Customer C has visited the restaurant 3 times.
+---
 ### 3. What was the first item from the menu purchased by each customer?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 5. Which item was the most popular for each customer?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 6. Which item was purchased first by the customer after they became a member?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 7. Which item was purchased just before the customer became a member?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 8. What is the total items and amount spent for each member before they became a member?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+
+#### 💻 SQL Query
+```sql
+
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
+---
 ### 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customers A and B have at the end of January?
 
+#### 💻 SQL Query
+```sql
 
-
-
+```
+#### 🖊 Result
+#### 📜 Explanation
+### Answer
