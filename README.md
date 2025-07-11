@@ -56,7 +56,7 @@
 
 ### Answer
 
-The total amount each customer spent at the restaurant: 
+Total Amount Spent per Customer 
 - Customer A spent 76$.
 - Customer B spent 74$.
 - Customer C spent 36$.
@@ -81,7 +81,7 @@ ORDER BY customer_id;
 - Count the days with `COUNT(order_date)`
 - Group and order by `customer_id`.
 ### Answer
-Days that each customer has visited the restaurant:
+Number of Visits per Customer
 - Customer A has visited the restaurant 6 times.
 - Customer B has visited the restaurant 6 times.
 - Customer C has visited the restaurant 3 times.
