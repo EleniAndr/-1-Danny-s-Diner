@@ -66,7 +66,7 @@ Total Amount Spent per Customer
 
 #### 💻 SQL Query
 ```sql
-SELECT customer_id, COUNT(order_date) as days
+SELECT customer_id, COUNT(DISTINCT(order_date)) as days
 FROM dannys_diner.sales
 GROUP BY customer_id
 ORDER BY customer_id;
@@ -74,15 +74,15 @@ ORDER BY customer_id;
 #### 🖊 Result
 | customer_id | days |
 | ----------- | ---- |
-| A           | 6    |
+| A           | 4    |
 | B           | 6    |
 | C           | 3    |
 #### 📜 Explanation
-- Count the days with `COUNT(order_date)`
+- Count the days with `COUNT(DISTINCT(order_date))` so as not to count the same day multiple times.
 - Group and order by `customer_id`.
 ### Answer
 Number of Visits per Customer
-- Customer A has visited the restaurant 6 times.
+- Customer A has visited the restaurant 4 times.
 - Customer B has visited the restaurant 6 times.
 - Customer C has visited the restaurant 3 times.
 ---
@@ -90,11 +90,39 @@ Number of Visits per Customer
 
 #### 💻 SQL Query
 ```sql
+WITH first_item AS (
+  SELECT customer_id, MIN(order_date) AS first_day
+  FROM dannys_diner.sales
+  GROUP BY customer_id
+)
 
+SELECT fi.customer_id, fi.first_day, dm.product_name
+FROM first_item as fi
+JOIN dannys_diner.sales as ds
+  ON fi.customer_id = ds.customer_id AND fi.first_day = ds.order_date
+JOIN dannys_diner.menu dm
+  ON ds.product_id = dm.product_id
+ORDER BY customer_id;
 ```
 #### 🖊 Result
+| customer_id | first_day  | product_name |
+| ----------- | ---------- | ------------ |
+| A           | 2021-01-01 | sushi        |
+| A           | 2021-01-01 | curry        |
+| B           | 2021-01-01 | curry        |
+| C           | 2021-01-01 | ramen        |
+| C           | 2021-01-01 | ramen        |
 #### 📜 Explanation
+- Find the earliest order date for each customer using the temporary table `first_item`.
+- Join the tables `first_item` and `sales` to retrieve the corresponding `product_id` for each customer's first order.
+- Join the tables `sales` and `menu` to get the `product_name` for each product_id. 
 ### Answer
+Customer A's first purchase from the menu was sushi and curry.
+Customer B's first purchase from the menu was curry.
+Customer C's first purchase from the menu was ramen twice.
+
+For customers A and C, it's unclear whether their orders were placed simultaneously or during separate visits on the same day. To determine this with certainty, the exact time of each order would need to be provided.
+
 ---
 ### 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
