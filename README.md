@@ -55,8 +55,6 @@
 - Group and order by `customer_id` to display each customer's total spending at the restaurant.
 
 ### Answer
-
-Total Amount Spent per Customer 
 - Customer A spent 76$.
 - Customer B spent 74$.
 - Customer C spent 36$.
@@ -81,7 +79,6 @@ ORDER BY customer_id;
 - Count the days with `COUNT(DISTINCT(order_date))` so as not to count the same day multiple times.
 - Group and order by `customer_id`.
 ### Answer
-Number of Visits per Customer
 - Customer A has visited the restaurant 4 times.
 - Customer B has visited the restaurant 6 times.
 - Customer C has visited the restaurant 3 times.
@@ -117,9 +114,9 @@ ORDER BY customer_id;
 - Join the tables `first_item` and `sales` to retrieve the corresponding `product_id` for each customer's first order.
 - Join the tables `sales` and `menu` to get the `product_name` for each product_id. 
 ### Answer
-Customer A's first purchase from the menu was sushi and curry.
-Customer B's first purchase from the menu was curry.
-Customer C's first purchase from the menu was ramen twice.
+-Customer A's first purchase from the menu was sushi and curry.
+-Customer B's first purchase from the menu was curry.
+-Customer C's first purchase from the menu was ramen twice.
 
 For customers A and C, it's unclear whether their orders were placed simultaneously or during separate visits on the same day. To determine this with certainty, the exact time of each order would need to be provided.
 
@@ -131,6 +128,9 @@ For customers A and C, it's unclear whether their orders were placed simultaneou
 
 ```
 #### 🖊 Result
+| product_name | times_purchased |
+| ------------ | --------------- |
+| ramen        | 8               |
 #### 📜 Explanation
 ### Answer
 ---
